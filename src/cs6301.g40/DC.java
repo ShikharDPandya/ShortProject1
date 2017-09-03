@@ -24,6 +24,12 @@ public class DC {
      DCVertex [] dcvertex;
      Graph g;
 
+    /**
+     *
+     * @param g - Graph whose diameter needs to be found
+     *  The constructor initializes DCVertex array with vertices of Graph g
+     */
+     
      public DC(Graph g){
          this.g =g;
          dcvertex = new DCVertex[g.size()];
@@ -32,7 +38,12 @@ public class DC {
              dcvertex[u.name] = new DCVertex(u);
          }
      }
-
+    /**
+     *
+     * @param g - Graph whose diameter needs to be found
+     *  This function calls "bfs" function starting from root. LinkedList l is returned by bfs.
+     *  The function again call "bfs" starting from last element of LinkedList l.
+     */
     static LinkedList<Graph.Vertex> diameter(Graph g){
          LinkedList<Graph.Vertex> l = bfs(g,0);
          int first =    l.getFirst().name;
@@ -42,11 +53,18 @@ public class DC {
 
     }
 
-    static LinkedList<Graph.Vertex> bfs(Graph g, int i){
+    /**
+     *
+     * @param g - Graph on which bfs needs to be run
+     * @param last - Index in "dcvertex" array from where to start bfs
+     * This function implements Breadth First Search
+     */
+
+    static LinkedList<Graph.Vertex> bfs(Graph g, int last){
          DC dc = new DC(g);
          LinkedList<Graph.Vertex> li = new LinkedList<>();
          Queue<Graph.Vertex> qu = new LinkedList<Graph.Vertex>();
-         Graph.Vertex v1 = dc.dcvertex[i].element;
+         Graph.Vertex v1 = dc.dcvertex[last].element;
 
          qu.add(v1);
         dc.getDCVertex(v1).seen = true;
@@ -89,11 +107,22 @@ public class DC {
       return ls;
     }
 
+    /**
+     *
+     * @param u - vertex of the graph
+     * This function checks if vertex "u" is visited during bfs as per "seen" attribute
+     */
     boolean seen(Graph.Vertex u){
         DCVertex dcu = getDCVertex(u);
         return dcu.seen;
     }
 
+
+    /**
+     *
+     * @param u - vertex of the graph
+     * This function returns an element of "dcvertex" array corresponding to vertex "u".
+     */
     DCVertex getDCVertex(Graph.Vertex u){return dcvertex[u.name];}
 
     public static void main (String [] args )throws FileNotFoundException {

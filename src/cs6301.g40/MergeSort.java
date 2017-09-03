@@ -6,10 +6,26 @@ import java.util.InputMismatchException;
  * Created by mukku on 8/26/2017.
  */
 public class MergeSort {
+    /**
+     *
+     * @param arr - Unsorted Array which has to be sorted
+     * @param tmp - Buffer Array
+     *  The function call sort function
+     */
+
     static<T extends Comparable<? super T>> void mergeSort(T[] arr, T[] tmp){
         int len = arr.length;
         sort(arr,0,len-1,tmp);
     }
+    /**
+     *
+     * @param arr - Unsorted Array which has to be sorted
+     * @param first - initial index of array "arr" from where to start sorting
+     * @param last - last index of array "arr" up to which sorting needs to be done
+     * @param temp - Buffer Array
+     *  The function recursively calls sort function for two halves of array "arr"  and merge them
+     */
+
     static<T extends Comparable<? super T>> void sort(T[] arr, int first, int last, T [] temp){
         if(first < last) {
             int middle = (last + first) / 2;
@@ -18,6 +34,17 @@ public class MergeSort {
             merge(arr,first,middle,last,temp);
         }
     }
+
+    /**
+     *
+     * @param arr - The inputted array to merge
+     * @param first - initial index of first portion of array "arr" to be merged
+     * @param middle - final index of first portion of array "arr" to be merged
+     * @param last - final index of second portion of array "arr" to be merged
+     * @param temp - Buffer Array
+     *
+     * The function takes two different sorted portion of array and merge them as a sorted portion
+     */
 
     static<T extends Comparable<? super T>> void merge(T[] arr, int first, int middle, int last,T[] temp){
         for(int i=first; i<=last; i++ )
@@ -34,7 +61,7 @@ public class MergeSort {
         while(i<=middle) arr[k++] = temp[i++];
     }
     public static void main(String [] args){
-        int n = 20;
+        int n = 10000000;
         Integer[] inums = new Integer[n];
         for(int i=0; i<n; i++) {
             inums[i] = new Integer(i);
@@ -42,8 +69,10 @@ public class MergeSort {
         Shuffle.shuffle(inums);
         //     T <Integer> [] arr = new T <Integer>(inums);
         Integer [] temp = new Integer[inums.length];
+        /*
         for(int i=0;i<20;i++)
             System.out.print(inums[i]+" ");
+            */
 
         System.out.println();
         Timer t = new Timer(); // start timer
@@ -53,9 +82,9 @@ public class MergeSort {
 
         System.out.println(t.end());  // timer end
 
-      for(int i=0;i<20;i++)
+     /* for(int i=0;i<20;i++)
             System.out.print(inums[i]+" ");
-        System.out.println();
+        System.out.println();*/
 
   /*      int n = 10;
         Integer[] arr = new Integer[n];

@@ -140,9 +140,9 @@ public class Graph implements Iterable<Graph.Vertex> {
     /**
      * Method to add an edge to the graph
      *
-     * @param a
+     * @param from
      *            : int - one end of edge
-     * @param b
+     * @param to
      *            : int - other end of edge
      * @param weight
      *            : int - the weight of the edge
